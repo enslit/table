@@ -1,7 +1,21 @@
 import React, {useState} from 'react'
+import {SketchPicker} from 'react-color'
 
 function Row({name, type, color}) {
   const [currentColor, setCurrentColor] = useState(color);
+  const [showColorPicker, setShowColorPicker] = useState(false);
+
+  const onChangeColor = (color) => {
+    setCurrentColor(color.hex);
+  }
+
+  const handleChangeColorClick = () => {
+    setShowColorPicker(!showColorPicker);
+  }
+
+  const handleChangeColorClose = () => {
+    setShowColorPicker(false);
+  }
 
   return (
     <tr className="table__row">
@@ -14,10 +28,21 @@ function Row({name, type, color}) {
             style={{backgroundColor: currentColor}}
             aria-label="Выбрать цвет"
             type="button"
+            onClick={handleChangeColorClick}
           >
             {currentColor}
           </button>
         </div>
+        {
+          showColorPicker &&
+          <div className="color-picker__popover">
+            <div className="color-picker__cover" onClick={handleChangeColorClose} />
+            <SketchPicker
+              color={currentColor}
+              onChangeComplete={onChangeColor}
+            />
+          </div>
+        }
       </td>
     </tr>
   )
