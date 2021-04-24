@@ -1,0 +1,24 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  &__row {
+    border-top: 1px solid rgba(0, 0, 0, .12);
+  }
+
+  &__cell {
+    font-family: Roboto, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-align: left;
+    position: relative;
+    padding: 15px;
+
+    &_type {
+      &_actions {
+        text-align: right;
+        width: 75px;
+      }
+    }
+  }
+}

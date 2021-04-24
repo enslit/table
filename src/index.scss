@@ -1,12 +1,8 @@
-$color-border: rgba(0, 0, 0, .12);
-$text-color: #333;
-$icon-color: #6d6d6d;
-
 body {
     margin: 0;
     font-size: 16px;
     line-height: 1.6;
-    color: $text-color;
+    color: #333;
 }
 
 .container {
@@ -17,116 +13,4 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.table {
-    width: 100%;
-    border-collapse: collapse;
-
-    &__row {
-        border-top: 1px solid $color-border;
-    }
-
-    &__cell {
-        font-family: Roboto, sans-serif;
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-font-smoothing: antialiased;
-        text-align: left;
-        position: relative;
-        padding: 15px;
-
-        &_type {
-            &_actions {
-                text-align: right;
-                width: 75px;
-            }
-        }
-    }
-}
-
-.color-picker {
-    position: relative;
-    flex: 1 1 auto;
-    border: 1px solid $text-color;
-
-    &__button {
-        width: 100%;
-        height: 40px;
-        border: none;
-        display: block;
-        cursor: pointer;
-    }
-
-    &__popover {
-        position: absolute;
-        z-index: 2;
-        right: 0;
-        top: 0;
-    }
-
-    &__cover {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-    }
-}
-
-.form {
-    padding: 15px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-
-    &__fields {
-        display: flex;
-        flex: 1 1 auto;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    &__field {
-        margin-right: 10px;
-        position: relative;
-        flex: 1 1 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    &__label {
-        margin-right: 10px;
-    }
-
-    &__input {
-        padding: 5px;
-        flex: 1 1 auto;
-    }
-
-    &__buttons {
-        display: flex;
-    }
-
-    &__button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-}
-
-.button {
-    border: none;
-    background-color: transparent;
-    color: $icon-color;
-    transition: color 200ms ease-in-out;
-
-    &:hover {
-        cursor: pointer;
-        color: black;
-    }
 }

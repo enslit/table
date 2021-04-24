@@ -1,0 +1,45 @@
+.form {
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+
+  &__fields {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__field {
+    margin-right: 10px;
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__label {
+    margin-right: 10px;
+  }
+
+  &__input {
+    padding: 5px;
+    flex: 1 1 auto;
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

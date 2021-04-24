@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import RowForm from './RowForm'
+import Form from '../../Form/Form'
 
 function Row({row, onDeleteRow, onEditRow}) {
   const [editMode, setEditMode] = useState(false);
@@ -25,7 +25,7 @@ function Row({row, onDeleteRow, onEditRow}) {
     return (
       <tr className="table__row">
         <td colSpan={4}>
-          <RowForm
+          <Form
             onSubmit={handleSubmit}
             onClose={handleCloseForm}
             initialData={{name, type, color}}

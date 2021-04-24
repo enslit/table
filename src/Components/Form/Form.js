@@ -1,21 +1,12 @@
 import React, {useState} from 'react';
-import {SketchPicker} from 'react-color'
+import ColorPicker from '../ColorPicker/ColorPicker'
+import './form.scss';
 
-function RowForm({onSubmit, onClose, initialData}) {
+function Form({onSubmit, onClose, initialData}) {
   const defaultColor = '#ffffff';
   const [name, setName] = useState(initialData?.name || '');
   const [type, setType] = useState(initialData?.type || '');
   const [color, setColor] = useState(initialData?.color || defaultColor);
-  const [showColorPicker, setShowColorPicker] = useState(false);
-
-  const handleChangeColorClick = () => {
-    setShowColorPicker(!showColorPicker);
-  }
-
-  const handleChangeColorClose = () => {
-    setShowColorPicker(false);
-  }
-
 
   const handleChangeName = (evt) => {
     setName(evt.target.value);
@@ -60,27 +51,7 @@ function RowForm({onSubmit, onClose, initialData}) {
         </div>
         <div className="form__field">
           <span className="form__label">Color</span>
-          <div className="color-picker">
-            <button
-              className="color-picker__button"
-              style={{backgroundColor: color}}
-              aria-label="Выбрать цвет"
-              type="button"
-              onClick={handleChangeColorClick}
-            >
-              {color}
-            </button>
-          </div>
-          {
-            showColorPicker &&
-            <div className="color-picker__popover">
-              <div className="color-picker__cover" onClick={handleChangeColorClose} />
-              <SketchPicker
-                color={color}
-                onChangeComplete={handleChangeColor}
-              />
-            </div>
-          }
+          <ColorPicker color={color} onChangeColor={handleChangeColor} />
         </div>
       </div>
       <div className="form__buttons">
@@ -95,4 +66,4 @@ function RowForm({onSubmit, onClose, initialData}) {
   );
 }
 
-export default RowForm;
+export default Form;

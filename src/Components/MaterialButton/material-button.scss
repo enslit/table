@@ -1,0 +1,11 @@
+.button {
+  border: none;
+  background-color: transparent;
+  color: #6d6d6d;
+  transition: color 200ms ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    color: black;
+  }
+}

@@ -1,0 +1,45 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: auto;
+  max-width: 500px;
+
+  &__label {
+    margin-right: 5px;
+  }
+
+  &__arrows {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 5px;
+    max-width: 230px;
+  }
+
+  &__button {
+    display: grid;
+    place-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px;
+
+    &:hover {
+      background-color: #fafafa;
+    }
+
+    &_disabled:hover {
+      cursor: default;
+      background-color: transparent;
+    }
+  }
+
+  &__current {
+    display: grid;
+    place-content: center;
+  }
+}
