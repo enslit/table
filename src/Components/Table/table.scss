@@ -4,6 +4,14 @@
 
   &__row {
     border-top: 1px solid rgba(0, 0, 0, .12);
+
+    &:hover {
+      cursor: grab;
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
   }
 
   &__cell {

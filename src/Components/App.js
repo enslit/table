@@ -1,11 +1,34 @@
 import React, {useState} from 'react';
 import Table from './Table/Table'
 
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+
 function App() {
-  const [rows, setRows] = useState([
-    {id: 1, name: "name 1", type: "main", color: "#f4f4f4"},
-    {id: 2, name: "name 2", type: "side", color: "#f8f8f8"},
-  ]);
+  const [rows, setRows] = useState([]);
+
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    if (result.destination.index === result.source.index) {
+      return;
+    }
+
+    const reorderedRows = reorder(
+      rows,
+      result.source.index,
+      result.destination.index
+    );
+
+    setRows(reorderedRows);
+  }
 
   const handleAddRow = (rowData, setAddNewMode) => {
     setRows([
@@ -31,6 +54,7 @@ function App() {
     <div className="container">
       <Table
         rows={rows}
+        onDragEnd={onDragEnd}
         handleAddRow={handleAddRow}
         handleEditRow={handleEditRow}
         handleDeleteRow={handleDeleteRow}

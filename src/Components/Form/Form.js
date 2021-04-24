@@ -4,8 +4,9 @@ import './form.scss';
 
 function Form({onSubmit, onClose, initialData}) {
   const defaultColor = '#ffffff';
+  const defaultType = 'main';
   const [name, setName] = useState(initialData?.name || '');
-  const [type, setType] = useState(initialData?.type || '');
+  const [type, setType] = useState(initialData?.type || defaultType);
   const [color, setColor] = useState(initialData?.color || defaultColor);
 
   const handleChangeName = (evt) => {
@@ -21,6 +22,7 @@ function Form({onSubmit, onClose, initialData}) {
   }
 
   const handleSubmit = (evt) => {
+    // TODO Баг при сабмите формы по нажатию на enter когда открыто окно выбора цвета
     evt.preventDefault();
     onSubmit({name, type, color});
   }
