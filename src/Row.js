@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import AddRowForm from './AddRowForm'
+import RowForm from './RowForm'
 
-function Row({row, onAddRow, onDeleteRow, onEditRow}) {
+function Row({row, onDeleteRow, onEditRow}) {
   const [editMode, setEditMode] = useState(false);
   const {id, name, type, color} = row;
 
@@ -25,7 +25,7 @@ function Row({row, onAddRow, onDeleteRow, onEditRow}) {
     return (
       <tr className="table__row">
         <td colSpan={4}>
-          <AddRowForm
+          <RowForm
             onSubmit={handleSubmit}
             onClose={handleCloseForm}
             initialData={{name, type, color}}
@@ -41,10 +41,10 @@ function Row({row, onAddRow, onDeleteRow, onEditRow}) {
       <td className="table__cell">{type}</td>
       <td className="table__cell" style={{backgroundColor: color}}>{color}</td>
       <td className="table__cell table__cell_type_actions">
-        <button type="submit" className="button button_type_edit" onClick={handleEditClick}>
+        <button type="button" className="button button_type_edit" onClick={handleEditClick}>
           <span className="material-icons">edit</span>
         </button>
-        <button type="submit" className="button button_type_delete" onClick={handleDeleteClick}>
+        <button type="button" className="button button_type_delete" onClick={handleDeleteClick}>
           <span className="material-icons">delete</span>
         </button>
       </td>

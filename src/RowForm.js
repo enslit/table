@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {SketchPicker} from 'react-color'
 
-function AddRowForm({onSubmit, onClose, initialData}) {
+function RowForm({onSubmit, onClose, initialData}) {
   const defaultColor = '#ffffff';
   const [name, setName] = useState(initialData?.name || '');
   const [type, setType] = useState(initialData?.type || '');
@@ -39,7 +39,16 @@ function AddRowForm({onSubmit, onClose, initialData}) {
       <div className="form__fields">
         <div className="form__field">
           <label htmlFor="name" className="form__label">Name</label>
-          <input type="text" id="name" className="form__input" value={name} onChange={handleChangeName} name="name"/>
+          <input
+            type="text"
+            id="name"
+            className="form__input"
+            value={name}
+            onChange={handleChangeName}
+            name="name"
+            required
+            minLength={2}
+          />
         </div>
         <div className="form__field">
           <label htmlFor="type" className="form__label">Type</label>
@@ -86,4 +95,4 @@ function AddRowForm({onSubmit, onClose, initialData}) {
   );
 }
 
-export default AddRowForm;
+export default RowForm;

@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import Row from './Row'
+import RowForm from './RowForm'
+import MaterialButton from './MaterialButton'
 
 function App() {
   const [rows, setRows] = useState([
     {id: 1, name: "name 1", type: "main", color: "#f4f4f4"},
     {id: 2, name: "name 2", type: "side", color: "#f8f8f8"},
   ]);
+  const [addNewMode, setAddNewMode] = useState(false);
 
-  const handleAddRow = (rowData, setEditMode) => {
+  const handleAddRow = (rowData) => {
     setRows([
       ...rows,
       {
@@ -15,7 +18,7 @@ function App() {
         ...rowData
       }
     ])
-    setEditMode(false);
+    setAddNewMode(false);
   }
 
   const handleEditRow = (rowData, setEditMode) => {
@@ -36,6 +39,26 @@ function App() {
       <table className="table">
         <thead>
           <tr className="table__row">
+            <td className="table__cell" colSpan={2}>
+              {
+                addNewMode
+                  ? 'Добавить строку'
+                  : <MaterialButton type="add" handleClick={() => setAddNewMode(true)} />
+              }
+            </td>
+            <td className="table__cell" colSpan={2}>
+              Filter
+            </td>
+          </tr>
+          {
+            addNewMode &&
+            <tr className="table__row">
+              <td className="table__cell" colSpan={4}>
+                <RowForm onClose={() => setAddNewMode(false)} onSubmit={handleAddRow} />
+              </td>
+            </tr>
+          }
+          <tr className="table__row">
             <th className="table__cell">Name</th>
             <th className="table__cell">Type</th>
             <th className="table__cell">Color</th>
@@ -48,7 +71,6 @@ function App() {
             <Row
               key={row.id}
               row={row}
-              onAddRow={handleAddRow}
               onEditRow={handleEditRow}
               onDeleteRow={handleDeleteRow}
             />
