@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import AddRowForm from './AddRowForm'
 
-function Row({id, name, type, color, onAddRow, onDeleteRow, onEditRow}) {
+function Row({row, onAddRow, onDeleteRow, onEditRow}) {
   const [editMode, setEditMode] = useState(false);
+  const {id, name, type, color} = row;
 
   const handleEditClick = () => {
     setEditMode(true);

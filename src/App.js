@@ -44,13 +44,10 @@ function App() {
         </thead>
         <tbody>
         {
-          rows.map(({id, name, type, color}) => (
+          rows.map((row) => (
             <Row
-              key={id}
-              id={id}
-              name={name}
-              type={type}
-              color={color}
+              key={row.id}
+              row={row}
               onAddRow={handleAddRow}
               onEditRow={handleEditRow}
               onDeleteRow={handleDeleteRow}
