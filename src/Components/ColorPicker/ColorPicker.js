@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {SketchPicker} from 'react-color'
+import {SketchPicker} from 'react-color';
+import './color-picker.scss';
 
 function ColorPicker({color, onChangeColor}) {
   const [showColorPicker, setShowColorPicker] = useState(false);
