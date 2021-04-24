@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Row from './Row'
+import AddRowForm from './AddRowForm'
 
 function App() {
   const [rows, setRows] = useState([
@@ -7,8 +8,20 @@ function App() {
     {id: 2, name: "name 2", type: "side", color: "#f8f8f8"},
   ]);
 
+  const handleAddRow = (rowData, clearForm) => {
+    setRows([
+      ...rows,
+      {
+        id: rows.length + 1,
+        ...rowData
+      }
+    ])
+    clearForm();
+  }
+
   return (
     <div className="container">
+      <AddRowForm onSubmit={handleAddRow} />
       <table className="table">
         <thead>
           <tr className="table__row">
