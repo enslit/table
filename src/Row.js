@@ -1,48 +1,51 @@
 import React, {useState} from 'react'
-import {SketchPicker} from 'react-color'
+import AddRowForm from './AddRowForm'
 
-function Row({name, type, color}) {
-  const [currentColor, setCurrentColor] = useState(color);
-  const [showColorPicker, setShowColorPicker] = useState(false);
+function Row({id, name, type, color, onAddRow, onDeleteRow, onEditRow}) {
+  const [editMode, setEditMode] = useState(false);
 
-  const onChangeColor = (color) => {
-    setCurrentColor(color.hex);
+  const handleEditClick = () => {
+    setEditMode(true);
   }
 
-  const handleChangeColorClick = () => {
-    setShowColorPicker(!showColorPicker);
+  const handleCloseForm = () => {
+    setEditMode(false);
   }
 
-  const handleChangeColorClose = () => {
-    setShowColorPicker(false);
+  const handleSubmit = (data) => {
+    onEditRow({...data, id}, setEditMode);
+  }
+
+  const handleDeleteClick = () => {
+    onDeleteRow(id);
+  }
+
+  if (editMode) {
+    return (
+      <tr className="table__row">
+        <td colSpan={4}>
+          <AddRowForm
+            onSubmit={handleSubmit}
+            onClose={handleCloseForm}
+            initialData={{name, type, color}}
+          />
+        </td>
+      </tr>
+    )
   }
 
   return (
     <tr className="table__row">
       <td className="table__cell">{name}</td>
       <td className="table__cell">{type}</td>
-      <td className="table__cell">
-        <div className="color-picker">
-          <button
-            className="color-picker__button"
-            style={{backgroundColor: currentColor}}
-            aria-label="Выбрать цвет"
-            type="button"
-            onClick={handleChangeColorClick}
-          >
-            {currentColor}
-          </button>
-        </div>
-        {
-          showColorPicker &&
-          <div className="color-picker__popover">
-            <div className="color-picker__cover" onClick={handleChangeColorClose} />
-            <SketchPicker
-              color={currentColor}
-              onChangeComplete={onChangeColor}
-            />
-          </div>
-        }
+      <td className="table__cell" style={{backgroundColor: color}}>{color}</td>
+      <td className="table__cell table__cell_type_actions">
+        <button type="submit" className="button button_type_edit" onClick={handleEditClick}>
+          <span className="material-icons">edit</span>
+        </button>
+        <button type="submit" className="button button_type_delete" onClick={handleDeleteClick}>
+          <span className="material-icons">delete</span>
+        </button>
       </td>
     </tr>
   )

@@ -1,10 +1,21 @@
 import React, {useState} from 'react';
+import {SketchPicker} from 'react-color'
 
-function AddRowForm({onSubmit}) {
+function AddRowForm({onSubmit, onClose, initialData}) {
   const defaultColor = '#ffffff';
-  const [name, setName] = useState('');
-  const [type, setType] = useState('');
-  const [color, setColor] = useState(defaultColor);
+  const [name, setName] = useState(initialData?.name || '');
+  const [type, setType] = useState(initialData?.type || '');
+  const [color, setColor] = useState(initialData?.color || defaultColor);
+  const [showColorPicker, setShowColorPicker] = useState(false);
+
+  const handleChangeColorClick = () => {
+    setShowColorPicker(!showColorPicker);
+  }
+
+  const handleChangeColorClose = () => {
+    setShowColorPicker(false);
+  }
+
 
   const handleChangeName = (evt) => {
     setName(evt.target.value);
@@ -14,19 +25,13 @@ function AddRowForm({onSubmit}) {
     setType(evt.target.value);
   }
 
-  const handleChangeColor = (evt) => {
-    setColor(evt.target.value);
+  const handleChangeColor = (value) => {
+    setColor(value.hex);
   }
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onSubmit({name, type, color}, resetForm);
-  }
-
-  const resetForm = () => {
-    setName('');
-    setType('');
-    setColor(defaultColor);
+    onSubmit({name, type, color});
   }
 
   return (
@@ -38,18 +43,42 @@ function AddRowForm({onSubmit}) {
         </div>
         <div className="form__field">
           <label htmlFor="type" className="form__label">Type</label>
-          <input type="text" id="type" className="form__input" value={type} onChange={handleChangeType} name="type"/>
+          <select name="type" id="type" className="form__input" value={type} onChange={handleChangeType}>
+            <option value="main">Main</option>
+            <option value="side">Side</option>
+            <option value="content">Content</option>
+          </select>
         </div>
         <div className="form__field">
-          <label htmlFor="color" className="form__label">Color</label>
-          <input type="color" id="color" className="form__input" value={color} onChange={handleChangeColor} name="color"/>
+          <span className="form__label">Color</span>
+          <div className="color-picker">
+            <button
+              className="color-picker__button"
+              style={{backgroundColor: color}}
+              aria-label="Выбрать цвет"
+              type="button"
+              onClick={handleChangeColorClick}
+            >
+              {color}
+            </button>
+          </div>
+          {
+            showColorPicker &&
+            <div className="color-picker__popover">
+              <div className="color-picker__cover" onClick={handleChangeColorClose} />
+              <SketchPicker
+                color={color}
+                onChangeComplete={handleChangeColor}
+              />
+            </div>
+          }
         </div>
       </div>
       <div className="form__buttons">
         <button type="submit" className="form__button form__button_type_submit">
-          <span className="material-icons">add</span>
+          <span className="material-icons">done</span>
         </button>
-        <button type="reset" className="form__button form__button_type_reset">
+        <button type="button" className="form__button form__button_type_reset" onClick={onClose}>
           <span className="material-icons">clear</span>
         </button>
       </div>
