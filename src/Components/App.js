@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Table from './Table/Table'
+import useLocalStorage from '../hooks/useLocalStorage'
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -10,7 +11,7 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 function App() {
-  const [rows, setRows] = useState([]);
+  const [rows, setRows] = useLocalStorage('rows', []);
 
   const onDragEnd = (result) => {
     if (!result.destination) {
