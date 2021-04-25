@@ -5,6 +5,12 @@ body {
     color: #333;
 }
 
+@media screen and (max-width: 350px) {
+    body {
+        font-size: 14px;
+    }
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
