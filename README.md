@@ -1,28 +1,32 @@
-# Drag and Drop table
+# React JS Drag and Drop Table
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Простой интерфейс манипулирования данными в табличном представлении.
 
-## Available Scripts
+## Функционал
 
-In the project directory, you can run:
+- Добавление, удаление и изменение записей в табличной части
+- Сохранение и получение данных в LocalStorage
+- Фильтрация по списку
+- Подбор цвета из палитры
+- Перетаскивание строк в табличной части (сопровождается перемещением записи в массиве)
+
+## Технологии
+- React JS
+- SCSS
+- [React-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
+- [React-color](https://casesandberg.github.io/react-color/)
+
+## Доступные скрипты
+
+Находясь в корне проекта запустите:
 
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Для запуска приложение в режиме разработки.\
+[http://localhost:3000](http://localhost:3000) для просмотра в браузере.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-
+Страница будет автоматически перезагружаться после сохранения изменений.
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Для сборки проекта в режиме продакшн в директорию `build`.
