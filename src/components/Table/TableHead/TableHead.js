@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import MaterialButton from '../../MaterialButton/MaterialButton'
 import Form from '../../Form/Form'
+import Search from '../../Search/Search'
 
-function TableHead({handleAddNewRow}) {
+function TableHead({handleAddNewRow, handleSearchInput, searchValue}) {
   const [addNewMode, setAddNewMode] = useState(false);
 
   const handleSubmitAddNewRow = (formData) => {
@@ -19,8 +20,8 @@ function TableHead({handleAddNewRow}) {
               : <MaterialButton type="add" handleClick={() => setAddNewMode(true)} />
           }
         </td>
-        <td className="table__cell" colSpan={2}>
-          Search place
+        <td className="table__cell table__cell_type_search" colSpan={2}>
+          <Search value={searchValue} onSearch={handleSearchInput} />
         </td>
       </tr>
       {

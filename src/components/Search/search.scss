@@ -1,0 +1,19 @@
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  &__input {
+    max-width: 0;
+    padding: 0;
+    border: none;
+    transition: max-width 200ms ease-in-out;
+
+    &_active {
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #6d6d6d;
+      max-width: 100%;
+    }
+  }
+}
